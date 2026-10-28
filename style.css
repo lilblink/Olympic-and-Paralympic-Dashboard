@@ -1,0 +1,1915 @@
+/* ==========================================================================
+   ASEAN Olympic & Paralympic Dashboard - Stylesheet
+   Theme: Colorful Premium Sports Dashboard
+   Typography: Kanit (Google Fonts)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* พื้นหลังและโครงสร้างหลัก */
+  --color-bg: #F5F7FB;
+  --color-card-bg: #FFFFFF;
+  --color-border: #E5EAF2;
+  --color-border-hover: #CBD5E1;
+  --color-divider: #EDF2F7;
+
+  /* สีหลักและสีทองพรีเมียม */
+  --color-gold-primary: #D4A72C;
+  --color-gold-dark: #9C7415;
+  --color-gold-light: #FFF5D8;
+  --color-navy: #243B64;
+  --color-navy-dark: #1A2B49;
+  --color-navy-light: #325085;
+
+  /* สีข้อความ */
+  --color-text-main: #202B3C;
+  --color-text-secondary: #728096;
+  --color-text-muted: #A0AEC0;
+  --color-text-light: #FFFFFF;
+
+  /* สีประจำประเภทเหรียญรางวัล */
+  --color-medal-gold: #E5AE24;
+  --color-medal-gold-bg: #FFF5D8;
+  --color-medal-gold-border: rgba(229, 174, 36, 0.4);
+  --color-medal-gold-text: #966C06;
+
+  --color-medal-silver: #8C9AAF;
+  --color-medal-silver-bg: #F1F4F9;
+  --color-medal-silver-border: rgba(140, 154, 175, 0.4);
+  --color-medal-silver-text: #4A5568;
+
+  --color-medal-bronze: #B8754D;
+  --color-medal-bronze-bg: #FDF1EC;
+  --color-medal-bronze-border: rgba(184, 117, 77, 0.4);
+  --color-medal-bronze-text: #8C4720;
+
+  /* สีประจำประเภทการแข่งขัน */
+  --color-olympic: #4776E6;
+  --color-olympic-bg: #EAF1FF;
+  --color-olympic-border: rgba(71, 118, 230, 0.35);
+  --color-olympic-text: #2152C7;
+
+  --color-paralympic: #805AD5;
+  --color-paralympic-bg: #F0EBFF;
+  --color-paralympic-border: rgba(128, 90, 213, 0.35);
+  --color-paralympic-text: #6038B8;
+
+  /* สีตกแต่งเพิ่มเติม */
+  --color-teal: #28A7A1;
+  --color-teal-light: #E4F7F3;
+  --color-coral: #F07869;
+  --color-coral-light: #FDEDE9;
+
+  /* ตาราง */
+  --table-header-bg: #F0F4FA;
+  --table-row-alt-bg: #F8FAFC;
+  --table-row-hover-bg: #EAF1FF;
+
+  /* ฟอนต์และขนาดตัวอักษร */
+  --font-family: 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* มิติ เงา และขอบโค้ง */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(36, 59, 100, 0.05);
+  --shadow-card: 0 4px 18px -2px rgba(36, 59, 100, 0.06), 0 2px 6px -1px rgba(36, 59, 100, 0.03);
+  --shadow-hover: 0 8px 24px -4px rgba(36, 59, 100, 0.12), 0 4px 8px -2px rgba(36, 59, 100, 0.06);
+  --shadow-modal: 0 20px 40px -8px rgba(36, 59, 100, 0.25);
+
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base & Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* แถบสีทองตกแต่งบนสุด */
+.top-gold-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold-dark) 0%, var(--color-gold-primary) 50%, #F5CE68 100%);
+  width: 100%;
+}
+
+/* เลย์เอาต์คอนเทนเนอร์ */
+.header-container,
+.content-container,
+.footer-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header Section (แบบ Sports Dashboard)
+   -------------------------------------------------------------------------- */
+.site-header {
+  background-color: var(--color-card-bg);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 16px;
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(36, 59, 100, 0.1));
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+/* เมนูนำทางภายในหน้าเดียว */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-navy);
+  background-color: var(--color-olympic-bg);
+}
+
+.nav-link.active {
+  color: var(--color-navy);
+  background-color: var(--color-gold-light);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Content Layout
+   -------------------------------------------------------------------------- */
+.main-content {
+  flex: 1;
+  padding: 28px 0 60px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Dashboard Heading (ส่วนหัว Dashboard)
+   -------------------------------------------------------------------------- */
+.dashboard-hero {
+  position: relative;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F2 60%, #EEF4FD 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-gold-light);
+  color: var(--color-gold-dark);
+  border: 1px solid rgba(212, 167, 44, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-gold-primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* วงกลมตกแต่งด้านข้าง */
+.hero-decoration {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  bottom: -20px;
+  width: 260px;
+  pointer-events: none;
+}
+
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.deco-1 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(212, 167, 44, 0.12) 0%, rgba(212, 167, 44, 0) 70%);
+  top: -40px;
+  right: 10px;
+}
+
+.deco-2 {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(71, 118, 230, 0.1) 0%, rgba(71, 118, 230, 0) 70%);
+  bottom: -30px;
+  right: 80px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Stat Cards (การ์ดสถิติ 4 ใบ)
+   -------------------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* แถบสีด้านบนของการ์ด */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+/* ธีมสีแยกแต่ละการ์ด */
+.stat-total::before { background-color: var(--color-navy); }
+.stat-total .stat-icon-wrapper { background-color: var(--color-olympic-bg); color: var(--color-navy); }
+
+.stat-gold::before { background-color: var(--color-medal-gold); }
+.stat-gold .stat-icon-wrapper { background-color: var(--color-medal-gold-bg); color: var(--color-medal-gold-text); }
+
+.stat-silver::before { background-color: var(--color-medal-silver); }
+.stat-silver .stat-icon-wrapper { background-color: var(--color-medal-silver-bg); color: var(--color-medal-silver-text); }
+
+.stat-bronze::before { background-color: var(--color-medal-bronze); }
+.stat-bronze .stat-icon-wrapper { background-color: var(--color-medal-bronze-bg); color: var(--color-medal-bronze-text); }
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stat-card-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.stat-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-stat {
+  width: 22px;
+  height: 22px;
+}
+
+.stat-card-body {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-unit {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.stat-card-footer {
+  border-top: 1px solid var(--color-divider);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.stat-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   7. Filter Panel (ส่วนค้นหาและตัวกรอง)
+   -------------------------------------------------------------------------- */
+.panel-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.panel-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.panel-header-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-navy);
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.panel-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+/* ปุ่มล้างตัวกรอง */
+.btn-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #F8FAFC;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-reset:hover {
+  background-color: #F1F5F9;
+  color: var(--color-coral);
+  border-color: #CBD5E1;
+}
+
+.btn-reset:focus-visible {
+  outline: 2px solid var(--color-olympic);
+  outline-offset: 2px;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ตารางตัวกรอง (Filter Grid: 6 ช่อง จัดเป็น 3 คอลัมน์บน Desktop) */
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+}
+
+.input-with-icon,
+.select-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  width: 17px;
+  height: 17px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.filter-input,
+.filter-select {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  background-color: #FAFCFE;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px 10px 38px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  appearance: none;
+}
+
+.select-with-icon::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.filter-input:hover,
+.filter-select:hover {
+  border-color: var(--color-border-hover);
+  background-color: #FFFFFF;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  background-color: #FFFFFF;
+  border-color: var(--color-olympic);
+  box-shadow: 0 0 0 3px rgba(71, 118, 230, 0.15);
+}
+
+/* แถบสรุปตัวกรองที่ใช้งานอยู่ */
+.active-filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--color-border);
+  flex-wrap: wrap;
+}
+
+.active-filters-label {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.active-tags-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag-default {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  background-color: #F1F5F9;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-olympic-bg);
+  color: var(--color-olympic-text);
+  border: 1px solid var(--color-olympic-border);
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.tag-remove:hover {
+  opacity: 1;
+}
+
+.tag-remove-icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Athlete Table & Country Flags
+   -------------------------------------------------------------------------- */
+.table-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-size-label {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.page-size-select {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #FFFFFF;
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: var(--color-olympic);
+}
+
+.table-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #F8FAFC;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.notice-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-navy);
+  flex-shrink: 0;
+}
+
+/* Table Responsive wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  -webkit-overflow-scrolling: touch;
+}
+
+.athletes-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+  min-width: 980px;
+}
+
+.athletes-table thead {
+  background-color: var(--table-header-bg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.athletes-table th {
+  padding: 12px 14px;
+  font-weight: 600;
+  color: var(--color-navy);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.th-sortable {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.th-sortable:hover {
+  background-color: #E2EAF5;
+}
+
+.th-sortable:focus-visible {
+  outline: 2px solid var(--color-olympic);
+  outline-offset: -2px;
+}
+
+.th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sort-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.th-sortable.sorted .sort-icon {
+  color: var(--color-navy);
+}
+
+.athletes-table tbody tr {
+  border-bottom: 1px solid var(--color-divider);
+  transition: background-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.athletes-table tbody tr:nth-child(even) {
+  background-color: var(--table-row-alt-bg);
+}
+
+.athletes-table tbody tr:hover {
+  background-color: var(--table-row-hover-bg);
+}
+
+.athletes-table td {
+  padding: 13px 14px;
+  color: var(--color-text-main);
+  vertical-align: middle;
+}
+
+/* คอลัมน์เด่น */
+.td-athlete-name {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.td-year {
+  font-weight: 600;
+  color: var(--color-navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.td-muted {
+  color: var(--color-text-muted);
+}
+
+/* ธงชาติและชื่อประเทศ (Country Flag & Badge) */
+.country-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.country-flag-img {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(36, 59, 100, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.host-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.host-cell-details {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.host-country-sub {
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+}
+
+/* Badges ประจำประเภทการแข่งขัน */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-olympic {
+  background-color: var(--color-olympic-bg);
+  color: var(--color-olympic-text);
+  border: 1px solid var(--color-olympic-border);
+}
+
+.badge-paralympic {
+  background-color: var(--color-paralympic-bg);
+  color: var(--color-paralympic-text);
+  border: 1px solid var(--color-paralympic-border);
+}
+
+/* Badges ประจำชนิดเหรียญ */
+.badge-gold {
+  background-color: var(--color-medal-gold-bg);
+  color: var(--color-medal-gold-text);
+  border: 1px solid var(--color-medal-gold-border);
+  font-weight: 600;
+}
+
+.badge-silver {
+  background-color: var(--color-medal-silver-bg);
+  color: var(--color-medal-silver-text);
+  border: 1px solid var(--color-medal-silver-border);
+  font-weight: 600;
+}
+
+.badge-bronze {
+  background-color: var(--color-medal-bronze-bg);
+  color: var(--color-medal-bronze-text);
+  border: 1px solid var(--color-medal-bronze-border);
+  font-weight: 600;
+}
+
+.badge-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.badge-gold .badge-indicator-dot { background-color: var(--color-medal-gold); }
+.badge-silver .badge-indicator-dot { background-color: var(--color-medal-silver); }
+.badge-bronze .badge-indicator-dot { background-color: var(--color-medal-bronze); }
+
+/* แถวแสดงสถานะเมื่อไม่พบข้อมูลในตาราง */
+.td-no-data {
+  text-align: center;
+  padding: 42px 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 400;
+  background-color: #FFFFFF;
+}
+
+
+/* Pagination Controls */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-info {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.pagination-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-page:hover:not(:disabled) {
+  background-color: #F8FAFC;
+  border-color: var(--color-border-hover);
+}
+
+.btn-page:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.page-numbers-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-page-number {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-page-number:hover:not(.active) {
+  background-color: #F8FAFC;
+  border-color: var(--color-border-hover);
+}
+
+.btn-page-number.active {
+  background-color: var(--color-navy);
+  color: #FFFFFF;
+  border-color: var(--color-navy);
+  font-weight: 600;
+}
+
+.page-ellipsis {
+  padding: 0 4px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. Summary Charts (ส่วนสรุปเหรียญรางวัล)
+   -------------------------------------------------------------------------- */
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.charts-header {
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+
+.section-subtitle {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+/* 4-card 2x2 grid layout */
+.charts-grid,
+.charts-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.chart-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-card-header {
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.chart-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-header-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.chart-icon-gold { color: var(--color-gold-primary); }
+.chart-icon-blue { color: var(--color-olympic); }
+
+.chart-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.chart-card-desc {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.chart-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chart-canvas-container {
+  position: relative;
+  height: 280px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ข้อความสรุปจำนวนรายการเหรียญแต่ละชนิด */
+.chart-summary-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.summary-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: #FAFCFE;
+  position: relative;
+  text-align: center;
+}
+
+.pill-badge-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+.pill-gold .pill-badge-color { background-color: var(--color-medal-gold); }
+.pill-silver .pill-badge-color { background-color: var(--color-medal-silver); }
+.pill-bronze .pill-badge-color { background-color: var(--color-medal-bronze); }
+.pill-total .pill-badge-color { background-color: var(--color-navy); }
+
+.pill-label {
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+
+.pill-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Comparison Boxes for Olympic vs Paralympic */
+.comparison-summary-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.comparison-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  background-color: #FAFCFE;
+}
+
+.comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.comp-badge-olympic {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-olympic-text);
+  background-color: var(--color-olympic-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.comp-badge-paralympic {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-paralympic-text);
+  background-color: var(--color-paralympic-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.comp-total {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.comp-breakdown {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   10. Modal (หน้าต่างป๊อปอัปรายละเอียดนักกีฬา)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 43, 73, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 1;
+  transition: opacity var(--transition-normal);
+}
+
+.modal-overlay[hidden] {
+  display: none !important;
+}
+
+.modal-container {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  animation: modalScaleIn 0.22s ease-out;
+}
+
+@keyframes modalScaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 100%);
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.modal-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-icon-badge.icon-gold {
+  background-color: var(--color-medal-gold-bg);
+  color: var(--color-medal-gold-text);
+}
+
+.modal-icon-badge.icon-silver {
+  background-color: var(--color-medal-silver-bg);
+  color: var(--color-medal-silver-text);
+}
+
+.modal-icon-badge.icon-bronze {
+  background-color: var(--color-medal-bronze-bg);
+  color: var(--color-medal-bronze-text);
+}
+
+.modal-main-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.modal-badges-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+
+.btn-modal-close {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-modal-close:hover {
+  background-color: #F1F5F9;
+  color: var(--color-text-main);
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detail-item {
+  background-color: #F9FBFE;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-span-2 {
+  grid-column: span 2;
+}
+
+.detail-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.detail-ico {
+  width: 14px;
+  height: 14px;
+  color: var(--color-navy);
+}
+
+.detail-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  word-break: break-word;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  background-color: #FAFCFE;
+}
+
+.btn-secondary {
+  background-color: #F1F5F9;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background-color: #E2E8F0;
+}
+
+/* --------------------------------------------------------------------------
+   10b. New Colorful Chart & Leaderboard Components
+   -------------------------------------------------------------------------- */
+
+/* Taller canvas for 10-sport horizontal bar chart */
+.chart-canvas-tall {
+  height: 360px !important;
+  min-height: 320px;
+}
+
+/* Chart header icon badge — colored small square */
+.chart-header-badge-ico {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-badge-gold {
+  background-color: var(--color-medal-gold-bg);
+  color: var(--color-medal-gold-text);
+}
+
+.icon-badge-purple {
+  background-color: var(--color-paralympic-bg);
+  color: var(--color-paralympic-text);
+}
+
+.icon-badge-emerald {
+  background-color: var(--color-teal-light);
+  color: var(--color-teal);
+}
+
+.icon-badge-coral {
+  background-color: var(--color-coral-light);
+  color: var(--color-coral);
+}
+
+/* Chart footer note */
+.chart-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.note-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Charts header badge (section badge above section title) */
+.charts-header-badge,
+.charts-header .charts-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  background-color: var(--color-teal-light);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.analytics-badge-ico {
+  width: 14px;
+  height: 14px;
+}
+
+/* Leaderboard list container */
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Each athlete leaderboard row */
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: #FAFCFE;
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+}
+
+.leaderboard-item:hover {
+  background-color: #EAF1FF;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Rank number badge */
+.rank-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.rank-1 { background-color: var(--color-medal-gold-bg); color: var(--color-medal-gold-text); }
+.rank-2 { background-color: var(--color-medal-silver-bg); color: var(--color-medal-silver-text); }
+.rank-3 { background-color: var(--color-medal-bronze-bg); color: var(--color-medal-bronze-text); }
+.rank-other { background-color: var(--color-olympic-bg); color: var(--color-olympic-text); }
+
+/* Leaderboard athlete info */
+.leaderboard-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.leaderboard-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: underline dotted transparent;
+  transition: color var(--transition-fast);
+}
+
+.leaderboard-item:hover .leaderboard-name {
+  color: var(--color-olympic);
+  text-decoration-color: var(--color-olympic);
+}
+
+.leaderboard-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+/* Medal dots next to athlete */
+.medal-dots {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.medal-dot-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.medal-dot-label {
+  font-size: 0.63rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.medal-dot-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dot-gold { color: var(--color-medal-gold); }
+.dot-silver { color: var(--color-medal-silver); }
+.dot-bronze { color: var(--color-medal-bronze); }
+
+/* Total medals badge in leaderboard */
+.leaderboard-total {
+  background-color: var(--color-navy);
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Panel icon badge (filter panel header icon) */
+.panel-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--color-olympic) 0%, var(--color-paralympic) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+}
+
+.panel-icon-badge .panel-header-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Table title area */
+.table-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Filter-focus color rings per field */
+.filter-focus-blue:focus-within { box-shadow: 0 0 0 3px rgba(71, 118, 230, 0.18); border-color: var(--color-olympic) !important; }
+.filter-focus-amber:focus-within { box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18); border-color: #F59E0B !important; }
+.filter-focus-purple:focus-within { box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.18); border-color: var(--color-paralympic) !important; }
+.filter-focus-emerald:focus-within { box-shadow: 0 0 0 3px rgba(40, 167, 161, 0.18); border-color: var(--color-teal) !important; }
+.filter-focus-gold:focus-within { box-shadow: 0 0 0 3px rgba(212, 167, 44, 0.18); border-color: var(--color-gold-primary) !important; }
+.filter-focus-rose:focus-within { box-shadow: 0 0 0 3px rgba(240, 120, 105, 0.18); border-color: var(--color-coral) !important; }
+
+/* Icon colors per filter type */
+.icon-color-blue { color: var(--color-olympic) !important; }
+.icon-color-amber { color: #D97706 !important; }
+.icon-color-purple { color: var(--color-paralympic) !important; }
+.icon-color-emerald { color: var(--color-teal) !important; }
+.icon-color-gold { color: var(--color-gold-primary) !important; }
+.icon-color-rose { color: var(--color-coral) !important; }
+
+/* Hint icon in stat card footer */
+.hint-ico {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Nav icon next to nav link text */
+.nav-ico {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* Inline status icon in active filters bar */
+.tag-status-ico {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Hero badge text */
+.hero-badge-text {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-navy);
+}
+
+/* Pulse animation for the live dot in hero badge */
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.badge-dot.pulse-glow {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* Deco circle 3 (third decoration element in hero) */
+.deco-3 {
+  position: absolute;
+  bottom: -20px;
+  right: 140px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(40, 167, 161, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Filter panel and table panel accent variants */
+.filter-panel-card {
+  border-top: 3px solid var(--color-olympic);
+}
+
+.table-panel-card {
+  border-top: 3px solid var(--color-teal);
+}
+
+/* Responsive: charts-grid-4 becomes 1 column on tablet */
+@media (max-width: 1024px) {
+  .charts-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-navy);
+  color: #FFFFFF;
+  padding: 36px 0 28px;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  max-width: 520px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.footer-logo-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+}
+
+.footer-desc {
+  font-size: 0.82rem;
+  color: #A0AEC0;
+  line-height: 1.5;
+}
+
+.footer-info {
+  text-align: right;
+}
+
+.footer-copyright {
+  font-size: 0.82rem;
+  color: #CBD5E0;
+  margin-bottom: 4px;
+}
+
+.footer-note {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Design (Desktop, Tablet, Mobile)
+   -------------------------------------------------------------------------- */
+
+/* Tablet (หน้าจอขนาดกลาง <= 1024px) */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-grid,
+  .charts-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-canvas-container {
+    height: 260px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-info {
+    text-align: left;
+  }
+}
+
+/* Mobile (หน้าจอขนาดเล็ก <= 768px) */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .nav-menu {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .dashboard-hero {
+    padding: 20px;
+  }
+
+  .hero-decoration {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-summary-pills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comparison-summary-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .table-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-span-2 {
+    grid-column: span 1;
+  }
+
+  .modal-container {
+    max-height: 94vh;
+  }
+}
+
+/* Extra small mobile (หน้าจอแคบ <= 480px) */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .content-container {
+    padding: 0 16px;
+  }
+
+  .panel-card {
+    padding: 16px;
+  }
+
+  .page-numbers-group {
+    display: none;
+  }
+}

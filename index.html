@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASEAN Olympic &amp; Paralympic Dashboard | สถิติและข้อมูลนักกีฬา</title>
+  
+  <!-- Google Fonts: Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- แถบสีรุ้งนีออนพรีเมียมประดับด้านบนสุด -->
+  <div class="top-gold-bar"></div>
+
+  <!-- Header แบบ Sports Dashboard สดใสพรีเมียม -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="brand-logo" aria-hidden="true">
+          <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoBgGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1E3A8A"/>
+                <stop offset="50%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#7C3AED"/>
+              </linearGradient>
+              <linearGradient id="logoGoldGrad" x1="12" y1="10" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FDE047"/>
+                <stop offset="50%" stop-color="#F59E0B"/>
+                <stop offset="100%" stop-color="#D97706"/>
+              </linearGradient>
+            </defs>
+            <circle cx="24" cy="24" r="22" fill="url(#logoBgGrad)" stroke="#FCD34D" stroke-width="2"/>
+            <circle cx="24" cy="24" r="17" fill="none" stroke="#FDE047" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <path d="M24 10L27.5 18H36.5L29 23.5L32 32L24 26.5L16 32L19 23.5L11.5 18H20.5L24 10Z" fill="url(#logoGoldGrad)"/>
+            <circle cx="24" cy="22" r="4" fill="#FFFFFF"/>
+            <path d="M14 36C18 39.5 30 39.5 34 36" stroke="#FCD34D" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">ASEAN OLYMPIC &amp; PARALYMPIC</h1>
+          <p class="brand-subtitle">ข้อมูลนักกีฬาผู้ได้รับเหรียญรางวัลในภูมิภาคเอเชียตะวันออกเฉียงใต้</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu" aria-label="เมนูนำทางหลัก">
+        <a href="#overview" class="nav-link active">
+          <i data-lucide="layout-dashboard" class="nav-ico"></i>
+          <span>ภาพรวม</span>
+        </a>
+        <a href="#athletes-section" class="nav-link">
+          <i data-lucide="users" class="nav-ico"></i>
+          <span>รายชื่อนักกีฬา</span>
+        </a>
+        <a href="#charts-section" class="nav-link">
+          <i data-lucide="bar-chart-2" class="nav-ico"></i>
+          <span>สถิติและอันดับ</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- เนื้อหาหลัก Dashboard -->
+  <main class="main-content">
+    <div class="content-container">
+
+      <!-- ส่วนหัว Dashboard (Dashboard Hero Banner) -->
+      <section id="overview" class="dashboard-hero">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot pulse-glow"></span>
+            <span class="hero-badge-text">ฐานข้อมูลประวัติศาสตร์ 334 รายการเหรียญรางวัลแห่งความภาคภูมิใจอาเซียน</span>
+          </div>
+          <h2 class="hero-title">สถิติและข้อมูลนักกีฬาผู้พิชิตเหรียญรางวัล</h2>
+          <p class="hero-description">
+            สำรวจและวิเคราะห์ข้อมูลผู้ได้รับเหรียญรางวัลจากการแข่งขัน Olympic และ Paralympic แห่งภูมิภาคเอเชียตะวันออกเฉียงใต้ พร้อมระบบกรอง ค้นหา และทำเนียบนักกีฬาแบบอินเทอร์แอคทีฟ
+          </p>
+        </div>
+        <div class="hero-decoration" aria-hidden="true">
+          <div class="deco-circle deco-1"></div>
+          <div class="deco-circle deco-2"></div>
+          <div class="deco-circle deco-3"></div>
+        </div>
+      </section>
+
+      <!-- การ์ดสถิติ 4 ใบสีสันสดใสพรีเมียม (Vibrant Summary Cards) -->
+      <section class="stats-section" aria-label="สถิติภาพรวมเหรียญรางวัล">
+        <div class="stats-grid">
+          <!-- การ์ด 1: รายการเหรียญทั้งหมด (Electric Royal Blue) -->
+          <article class="stat-card stat-total">
+            <div class="stat-card-header">
+              <span class="stat-card-label">รายการเหรียญทั้งหมด</span>
+              <div class="stat-icon-wrapper">
+                <i data-lucide="trophy" class="icon-stat"></i>
+              </div>
+            </div>
+            <div class="stat-card-body">
+              <span class="stat-number" id="stat-total-val">0</span>
+              <span class="stat-unit">รายการ</span>
+            </div>
+            <div class="stat-card-footer">
+              <span class="stat-hint">
+                <i data-lucide="sparkles" class="hint-ico"></i> รวมทุกประเภทการแข่งขัน
+              </span>
+            </div>
+          </article>
+
+          <!-- การ์ด 2: เหรียญทอง (Radiant Sunburst Gold) -->
+          <article class="stat-card stat-gold">
+            <div class="stat-card-header">
+              <span class="stat-card-label">เหรียญทอง</span>
+              <div class="stat-icon-wrapper">
+                <i data-lucide="medal" class="icon-stat"></i>
+              </div>
+            </div>
+            <div class="stat-card-body">
+              <span class="stat-number" id="stat-gold-val">0</span>
+              <span class="stat-unit">เหรียญ</span>
+            </div>
+            <div class="stat-card-footer">
+              <span class="stat-hint">
+                <i data-lucide="award" class="hint-ico"></i> Gold Medals
+              </span>
+            </div>
+          </article>
+
+          <!-- การ์ด 3: เหรียญเงิน (Metallic Platinum Silver) -->
+          <article class="stat-card stat-silver">
+            <div class="stat-card-header">
+              <span class="stat-card-label">เหรียญเงิน</span>
+              <div class="stat-icon-wrapper">
+                <i data-lucide="award" class="icon-stat"></i>
+              </div>
+            </div>
+            <div class="stat-card-body">
+              <span class="stat-number" id="stat-silver-val">0</span>
+              <span class="stat-unit">เหรียญ</span>
+            </div>
+            <div class="stat-card-footer">
+              <span class="stat-hint">
+                <i data-lucide="shield" class="hint-ico"></i> Silver Medals
+              </span>
+            </div>
+          </article>
+
+          <!-- การ์ด 4: เหรียญทองแดง (Warm Copper Bronze) -->
+          <article class="stat-card stat-bronze">
+            <div class="stat-card-header">
+              <span class="stat-card-label">เหรียญทองแดง</span>
+              <div class="stat-icon-wrapper">
+                <i data-lucide="shield" class="icon-stat"></i>
+              </div>
+            </div>
+            <div class="stat-card-body">
+              <span class="stat-number" id="stat-bronze-val">0</span>
+              <span class="stat-unit">เหรียญ</span>
+            </div>
+            <div class="stat-card-footer">
+              <span class="stat-hint">
+                <i data-lucide="flame" class="hint-ico"></i> Bronze Medals
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ส่วนค้นหาและตัวกรองสีสันสดใส (Colorful Filter Panel) -->
+      <section class="filter-section" aria-label="แผงค้นหาและกรองข้อมูล">
+        <div class="panel-card filter-panel-card">
+          <div class="panel-header">
+            <div class="panel-title-wrapper">
+              <div class="panel-icon-badge">
+                <i data-lucide="sliders" class="panel-header-icon"></i>
+              </div>
+              <div>
+                <h3 class="panel-title">ค้นหาและกรองข้อมูลนักกีฬา</h3>
+                <p class="panel-subtitle">ค้นหาตามชื่อนักกีฬา ปีการแข่งขัน ชนิดกีฬา เหรียญรางวัล หรือประเทศเกิด</p>
+              </div>
+            </div>
+            <button type="button" id="btn-reset-filters" class="btn-reset" title="ล้างค่าตัวกรองทั้งหมดเป็นค่าเริ่มต้น">
+              <i data-lucide="rotate-ccw" class="btn-icon"></i>
+              <span>ล้างตัวกรอง</span>
+            </button>
+          </div>
+
+          <div class="filter-grid">
+            <!-- ช่องค้นหาชื่อนักกีฬา -->
+            <div class="filter-item">
+              <label for="filter-search" class="filter-label">ค้นหาชื่อนักกีฬา</label>
+              <div class="input-with-icon filter-focus-blue">
+                <i data-lucide="search" class="input-icon icon-color-blue"></i>
+                <input 
+                  type="text" 
+                  id="filter-search" 
+                  class="filter-input" 
+                  placeholder="พิมพ์ชื่อนักกีฬาหรือชื่อทีม..." 
+                  autocomplete="off"
+                >
+              </div>
+            </div>
+
+            <!-- ตัวกรอง: ปีการแข่งขันและประเทศเจ้าภาพ -->
+            <div class="filter-item">
+              <label for="filter-year" class="filter-label">ปีการแข่งขัน (และประเทศเจ้าภาพ)</label>
+              <div class="select-with-icon filter-focus-amber">
+                <i data-lucide="calendar" class="input-icon icon-color-amber"></i>
+                <select id="filter-year" class="filter-select">
+                  <option value="all">ทุกปีการแข่งขัน</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ตัวกรอง: ประเภทการแข่งขัน -->
+            <div class="filter-item">
+              <label for="filter-competition" class="filter-label">ประเภทการแข่งขัน</label>
+              <div class="select-with-icon filter-focus-purple">
+                <i data-lucide="flag" class="input-icon icon-color-purple"></i>
+                <select id="filter-competition" class="filter-select">
+                  <option value="all">ทุกการแข่งขัน</option>
+                  <option value="Olympic">Olympic (โอลิมปิก)</option>
+                  <option value="Paralympic">Paralympic (พาราลิมปิก)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ตัวกรอง: ประเภทกีฬา -->
+            <div class="filter-item">
+              <label for="filter-sport" class="filter-label">ประเภทกีฬา</label>
+              <div class="select-with-icon filter-focus-emerald">
+                <i data-lucide="activity" class="input-icon icon-color-emerald"></i>
+                <select id="filter-sport" class="filter-select">
+                  <option value="all">ทุกชนิดกีฬา</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ตัวกรอง: ชนิดเหรียญรางวัล -->
+            <div class="filter-item">
+              <label for="filter-medal" class="filter-label">ชนิดเหรียญรางวัล</label>
+              <div class="select-with-icon filter-focus-gold">
+                <i data-lucide="medal" class="input-icon icon-color-gold"></i>
+                <select id="filter-medal" class="filter-select">
+                  <option value="all">ทุกเหรียญรางวัล</option>
+                  <option value="ทอง">เหรียญทอง (Gold)</option>
+                  <option value="เงิน">เหรียญเงิน (Silver)</option>
+                  <option value="ทองแดง">เหรียญทองแดง (Bronze)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ตัวกรอง: ประเทศเกิด (Country of Birth) -->
+            <div class="filter-item">
+              <label for="filter-country" class="filter-label">ประเทศเกิด (Country of Birth)</label>
+              <div class="select-with-icon filter-focus-rose">
+                <i data-lucide="globe" class="input-icon icon-color-rose"></i>
+                <select id="filter-country" class="filter-select">
+                  <option value="all">ทุกประเทศเกิด</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- แถบแสดงสถานะตัวกรองที่กำลังใช้งาน -->
+          <div id="active-filters-summary" class="active-filters-bar">
+            <span class="active-filters-label">
+              <i data-lucide="check-circle-2" class="tag-status-ico"></i> ตัวกรองที่ใช้งานอยู่:
+            </span>
+            <div id="active-tags-container" class="active-tags-container">
+              <span class="tag-default">แสดงข้อมูลทั้งหมด</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ตารางรายชื่อนักกีฬา (Athlete Table) -->
+      <section id="athletes-section" class="table-section" aria-label="ตารางรายชื่อนักกีฬาผู้ได้รับเหรียญรางวัล">
+        <div class="panel-card table-panel-card">
+          <div class="table-top-bar">
+            <div class="table-title-area">
+              <h3 class="panel-title">รายชื่อนักกีฬาผู้ได้รับเหรียญรางวัล</h3>
+              <p class="panel-subtitle" id="table-results-info">กำลังโหลดข้อมูล...</p>
+            </div>
+            <div class="table-actions">
+              <label for="select-page-size" class="page-size-label">แสดงต่อหน้า:</label>
+              <select id="select-page-size" class="page-size-select">
+                <option value="10">10 รายการ</option>
+                <option value="25">25 รายการ</option>
+                <option value="50">50 รายการ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- คำแนะนำการคลิกดูรายละเอียด -->
+          <div class="table-notice">
+            <i data-lucide="info" class="notice-icon"></i>
+            <span>คลิกที่แถวใดก็ได้เพื่อดูรายละเอียดครบทั้ง 10 ข้อมูล พร้อมประเทศเจ้าภาพและธงชาติ</span>
+          </div>
+
+          <!-- ตารางแสดงข้อมูลแบบ Responsive Scroll -->
+          <div class="table-responsive">
+            <table class="athletes-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="th-sortable" data-sort="year" tabindex="0" role="button" aria-label="เรียงตามปี">
+                    <div class="th-inner">
+                      <span>ปี</span>
+                      <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                    </div>
+                  </th>
+                  <th scope="col" class="th-sortable" data-sort="name" tabindex="0" role="button" aria-label="เรียงตามชื่อนักกีฬา">
+                    <div class="th-inner">
+                      <span>ชื่อนักกีฬา</span>
+                      <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                    </div>
+                  </th>
+                  <th scope="col">การแข่งขัน</th>
+                  <th scope="col">กีฬา</th>
+                  <th scope="col">หมวดย่อย</th>
+                  <th scope="col">อายุ</th>
+                  <th scope="col">เพศ/ประเภททีม</th>
+                  <th scope="col" class="th-sortable" data-sort="medal" tabindex="0" role="button" aria-label="เรียงตามชนิดเหรียญ">
+                    <div class="th-inner">
+                      <span>เหรียญรางวัล</span>
+                      <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                    </div>
+                  </th>
+                  <th scope="col">เมืองและประเทศเจ้าภาพ</th>
+                  <th scope="col">ประเทศเกิด</th>
+                </tr>
+              </thead>
+              <tbody id="athletes-table-body">
+                <!-- แถวข้อมูลถูกสร้างโดย script.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ส่วนควบคุม Pagination -->
+          <div class="pagination-bar">
+            <div class="pagination-info" id="pagination-info">
+              แสดงหน้า 1 จาก 1
+            </div>
+            <nav class="pagination-nav" aria-label="การแบ่งหน้า">
+              <button type="button" id="btn-prev-page" class="btn-page" title="หน้าก่อนหน้า" aria-label="หน้าก่อนหน้า">
+                <i data-lucide="chevron-left" class="page-icon"></i>
+                <span class="page-btn-text">ก่อนหน้า</span>
+              </button>
+              <div id="page-numbers-container" class="page-numbers-group">
+                <!-- ปุ่มเลขหน้าจะถูกใส่โดย script.js -->
+              </div>
+              <button type="button" id="btn-next-page" class="btn-page" title="หน้าถัดไป" aria-label="หน้าถัดไป">
+                <span class="page-btn-text">ถัดไป</span>
+                <i data-lucide="chevron-right" class="page-icon"></i>
+              </button>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      <!-- ส่วนกราฟและสถิติการจัดอันดับ (Charts & Leaderboards Section) -->
+      <section id="charts-section" class="charts-section" aria-label="สถิติและการจัดอันดับเหรียญรางวัล">
+        <div class="charts-header">
+          <div class="charts-header-badge">
+            <i data-lucide="trending-up" class="analytics-badge-ico"></i>
+            <span>สถิติเชิงลึกและการจัดอันดับ</span>
+          </div>
+          <h3 class="section-title">สถิติและทำเนียบเกียรติยศนักกีฬาอาเซียน</h3>
+          <p class="section-subtitle">วิเคราะห์สัดส่วนเหรียญรางวัล การเปรียบเทียบการแข่งขัน อันดับชนิดกีฬาที่คว้าเหรียญมากที่สุด และทำเนียบนักกีฬายอดเยี่ยม</p>
+        </div>
+
+        <div class="charts-grid-4">
+          <!-- กราฟที่ 1: สัดส่วนเหรียญรางวัล (Doughnut Chart) -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <div class="chart-header-badge-ico icon-badge-gold">
+                  <i data-lucide="pie-chart" class="chart-header-icon"></i>
+                </div>
+                <div>
+                  <h4 class="chart-card-title">สัดส่วนเหรียญรางวัล</h4>
+                  <p class="chart-card-desc">สัดส่วนจำนวนเหรียญทอง เงิน และทองแดง</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card-body">
+              <div class="chart-canvas-container">
+                <canvas id="doughnut-chart"></canvas>
+              </div>
+              <!-- ข้อความสรุปจำนวนรายการเหรียญแต่ละชนิด -->
+              <div class="chart-summary-pills">
+                <div class="summary-pill pill-gold">
+                  <span class="pill-badge-color"></span>
+                  <span class="pill-label">เหรียญทอง</span>
+                  <strong class="pill-value" id="summary-gold-count">0</strong>
+                </div>
+                <div class="summary-pill pill-silver">
+                  <span class="pill-badge-color"></span>
+                  <span class="pill-label">เหรียญเงิน</span>
+                  <strong class="pill-value" id="summary-silver-count">0</strong>
+                </div>
+                <div class="summary-pill pill-bronze">
+                  <span class="pill-badge-color"></span>
+                  <span class="pill-label">เหรียญทองแดง</span>
+                  <strong class="pill-value" id="summary-bronze-count">0</strong>
+                </div>
+                <div class="summary-pill pill-total">
+                  <span class="pill-badge-color"></span>
+                  <span class="pill-label">รวมทั้งหมด</span>
+                  <strong class="pill-value" id="summary-total-count">0</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- กราฟที่ 2: Olympic vs Paralympic (Stacked Bar Chart) -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <div class="chart-header-badge-ico icon-badge-purple">
+                  <i data-lucide="bar-chart-3" class="chart-header-icon"></i>
+                </div>
+                <div>
+                  <h4 class="chart-card-title">Olympic vs Paralympic</h4>
+                  <p class="chart-card-desc">เปรียบเทียบจำนวนรายการเหรียญแต่ละประเภทการแข่งขัน</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card-body">
+              <div class="chart-canvas-container">
+                <canvas id="stacked-bar-chart"></canvas>
+              </div>
+              <!-- ข้อมูลสรุปเปรียบเทียบ -->
+              <div class="comparison-summary-boxes">
+                <div class="comparison-box comp-olympic">
+                  <div class="comp-header">
+                    <span class="comp-badge-olympic">Olympic</span>
+                    <strong class="comp-total" id="comp-olympic-total">0 เหรียญ</strong>
+                  </div>
+                  <div class="comp-breakdown" id="comp-olympic-breakdown">
+                    ทอง: 0 | เงิน: 0 | ทองแดง: 0
+                  </div>
+                </div>
+                <div class="comparison-box comp-paralympic">
+                  <div class="comp-header">
+                    <span class="comp-badge-paralympic">Paralympic</span>
+                    <strong class="comp-total" id="comp-paralympic-total">0 เหรียญ</strong>
+                  </div>
+                  <div class="comp-breakdown" id="comp-paralympic-breakdown">
+                    ทอง: 0 | เงิน: 0 | ทองแดง: 0
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- กราฟที่ 3: อันดับประเภทกีฬาที่ได้เหรียญมากที่สุด (Top Sports Bar Chart) -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <div class="chart-header-badge-ico icon-badge-emerald">
+                  <i data-lucide="trophy" class="chart-header-icon"></i>
+                </div>
+                <div>
+                  <h4 class="chart-card-title">10 อันดับประเภทกีฬาที่ได้เหรียญมากที่สุด</h4>
+                  <p class="chart-card-desc">จัดอันดับชนิดกีฬาที่คว้าเหรียญสูงสุด พร้อมแยก ทอง เงิน ทองแดง</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card-body">
+              <div class="chart-canvas-container chart-canvas-tall">
+                <canvas id="top-sports-chart"></canvas>
+              </div>
+              <div class="chart-footer-note">
+                <i data-lucide="sparkles" class="note-icon"></i>
+                <span>อัปเดตและคำนวณตามตัวกรองที่เลือกในปัจจุบัน</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- การ์ดที่ 4: ทำเนียบนักกีฬาที่ได้เหรียญรางวัลมากที่สุด (Top Athletes Leaderboard) -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div class="chart-title-group">
+                <div class="chart-header-badge-ico icon-badge-coral">
+                  <i data-lucide="crown" class="chart-header-icon"></i>
+                </div>
+                <div>
+                  <h4 class="chart-card-title">ทำเนียบนักกีฬาที่ได้เหรียญมากที่สุด</h4>
+                  <p class="chart-card-desc">นักกีฬาผู้สร้างประวัติศาสตร์คว้าเหรียญรางวัลสะสมสูงสุด</p>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card-body">
+              <div id="top-athletes-list" class="leaderboard-list">
+                <!-- รายชื่อนักกีฬาจะถูกสร้างโดย script.js -->
+              </div>
+              <div class="chart-footer-note">
+                <i data-lucide="mouse-pointer-click" class="note-icon"></i>
+                <span>คลิกที่ชื่อนักกีฬาเพื่อกรองดูรายการเหรียญทั้งหมดของนักกีฬาคนนั้น</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal แสดงรายละเอียดข้อมูลนักกีฬา (Athlete Modal) -->
+  <div id="athlete-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-athlete-name" hidden>
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-icon-badge" id="modal-medal-icon-box">
+            <i data-lucide="award" class="modal-main-icon"></i>
+          </div>
+          <div>
+            <div class="modal-badges-group">
+              <span id="modal-competition-badge" class="badge badge-olympic">Olympic</span>
+              <span id="modal-medal-badge" class="badge badge-gold">เหรียญทอง</span>
+            </div>
+            <h3 id="modal-athlete-name" class="modal-title">ชื่อนักกีฬา</h3>
+          </div>
+        </div>
+        <button type="button" id="btn-close-modal" class="btn-modal-close" aria-label="ปิดหน้าต่างรายละเอียด">
+          <i data-lucide="x" class="close-icon"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="detail-grid">
+          <!-- 1. ปี -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="calendar" class="detail-ico"></i> ปีการแข่งขัน</span>
+            <span class="detail-value" id="modal-year">-</span>
+          </div>
+
+          <!-- 2. การแข่งขัน -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="flag" class="detail-ico"></i> การแข่งขัน</span>
+            <span class="detail-value" id="modal-competition">-</span>
+          </div>
+
+          <!-- 3. เมืองเจ้าภาพ -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="map-pin" class="detail-ico"></i> เมืองเจ้าภาพ</span>
+            <span class="detail-value" id="modal-city">-</span>
+          </div>
+
+          <!-- 4. ประเทศเจ้าภาพ -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="map" class="detail-ico"></i> ประเทศเจ้าภาพ</span>
+            <span class="detail-value" id="modal-host-country">-</span>
+          </div>
+
+          <!-- 5. เหรียญรางวัล -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="medal" class="detail-ico"></i> เหรียญรางวัล</span>
+            <span class="detail-value" id="modal-medal">-</span>
+          </div>
+
+          <!-- 6. กีฬา -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="activity" class="detail-ico"></i> ชนิดกีฬา</span>
+            <span class="detail-value" id="modal-sport">-</span>
+          </div>
+
+          <!-- 7. หมวดย่อย -->
+          <div class="detail-item detail-span-2">
+            <span class="detail-label"><i data-lucide="layers" class="detail-ico"></i> หมวดย่อย / รุ่นการแข่งขัน</span>
+            <span class="detail-value" id="modal-sport-sub">-</span>
+          </div>
+
+          <!-- 8. เพศ/ประเภททีม -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="users" class="detail-ico"></i> เพศ / ประเภททีม</span>
+            <span class="detail-value" id="modal-gender">-</span>
+          </div>
+
+          <!-- 9. อายุ -->
+          <div class="detail-item">
+            <span class="detail-label"><i data-lucide="user-check" class="detail-ico"></i> อายุ</span>
+            <span class="detail-value" id="modal-age">-</span>
+          </div>
+
+          <!-- 10. ประเทศเกิด -->
+          <div class="detail-item detail-span-2">
+            <span class="detail-label"><i data-lucide="globe" class="detail-ico"></i> ประเทศเกิด (Country Born)</span>
+            <span class="detail-value" id="modal-country">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-modal-dismiss" class="btn-secondary">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg class="footer-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="#1E3A8A" stroke="#F59E0B" stroke-width="2"/>
+            <path d="M20 9L23 15.5H29.5L24 19.5L26 26L20 22L14 26L16 19.5L10.5 15.5H17L20 9Z" fill="#F59E0B"/>
+          </svg>
+          <span class="footer-title">ASEAN OLYMPIC &amp; PARALYMPIC DASHBOARD</span>
+        </div>
+        <p class="footer-desc">
+          รวบรวมและนำเสนอสถิติผู้ได้รับเหรียญรางวัลจากกีฬาโอลิมปิกและพาราลิมปิกในภูมิภาคเอเชียตะวันออกเฉียงใต้
+        </p>
+      </div>
+      <div class="footer-info">
+        <p class="footer-copyright">&copy; 2026 Colorful Premium Sports Dashboard. All rights reserved.</p>
+        <p class="footer-note">พัฒนาด้วย HTML5, CSS3, Vanilla JavaScript, Kanit Font, Chart.js &amp; Lucide Icons</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
